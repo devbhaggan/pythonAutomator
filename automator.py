@@ -5,7 +5,7 @@ from time import sleep
 
 import logging
 
-from watchdog.observers import observers
+from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 
 # folder paths, add path for respective folder category
@@ -71,7 +71,7 @@ class MoverHandler(FileSystemEventHandler):
 
     def check_image_files(self, entry, name):
         for image_extension in image_extensions:
-            if name.endwith(image_extension) or name.endswith(image_extension.upper()):
+            if name.endswith(image_extension) or name.endswith(image_extension.upper()):
                 move_file(image_dir, entry, name)
                 logging.info(f"Moved image file: {name}")
 
